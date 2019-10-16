@@ -1,4 +1,4 @@
-package com.bdqn.crm.result;
+package com.bdqn.crm.utils.result;
 
 /**
  * 结果视图类
