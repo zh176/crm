@@ -86,7 +86,7 @@ public class ResultView {
 
     private ResultView(Object data) {
         this.data = data;
-        this.code = ResultEnum.CODE_1.getCode();
+        this.code = ResultEnum.CODE_1.getcode();
         this.msg = ResultEnum.CODE_1.getMsg();
     }
 
