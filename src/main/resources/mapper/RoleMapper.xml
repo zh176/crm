@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.">
+    <resultMap id="RoleResultMap" type="com.bdqn.crm.model.Role">
+        <result column="role_id" property="id"/>
+        <result column="role_name" property="name"/>
+        <result column="role_desc" property="description"/>
+        <result column="role_flag" property="flag"/>
+    </resultMap>
+</mapper>

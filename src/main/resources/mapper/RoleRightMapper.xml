@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.RoleRightMapper">
+    <resultMap id="RoleRightResultMap" type="com.bdqn.crm.model.RoleRight">
+        <result column="rf_id" property="id"/>
+        <result column="rf_role_id" property="roleId"/>
+        <result column="rf_right_code" property="rightCode"/>
+        <result column="rf_opeart" property="operate"/>
+    </resultMap>
+    <select id="getAll" resultMap="RoleRightResultMap">
+        SELECT * FROM sys_role_right
+    </select>
+
+</mapper>

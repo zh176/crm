@@ -19,4 +19,5 @@ public class RoleRight implements Serializable {
     private Integer id;
     private Integer roleId;
     private String rightCode;
+    private String operate;
 }

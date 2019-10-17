@@ -2,9 +2,9 @@ spring: #表示该配置直接为Spring容器负责处理
   datasource:
     type: com.alibaba.druid.pool.DruidDataSourceC3P0Adapter #配置当前要使用的数据源类型
     driver-class-name: com.mysql.cj.jdbc.Driver #配置mysql驱动类
-    data-username: root
-    data-password: Youjian147@
-    url: jdbc:mysql://122.51.38.175:3306/wsm-upms?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 'Youjian147@'
+    url: jdbc:mysql://122.51.38.175:3306/crm?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
     dbcp2:
       　　min-idle: 5         #数据库连接池的最小维持连接数
       　　initial-size: 5     #初始化提供的连接数
@@ -12,3 +12,9 @@ spring: #表示该配置直接为Spring容器负责处理
       　　max-wait-millis: 200        #等待连接获取的最大超时时间
 mybatis:
   mapper-locations: classpath:/mapper/*Mapper.xml #Mapper文件位置
+  type-aliases-package: com.bdqn.crm.model
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
