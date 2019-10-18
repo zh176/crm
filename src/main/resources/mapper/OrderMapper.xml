@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.OrderMapper">
+
+    <resultMap id="OrderResultMap" type="com.bdqn.crm.model.Order">
+        <result column="odr_id" property="id"/>
+        <result column="odr_cust_no" property="custNo"/>
+        <result column="odr_date" property="date"/>
+        <result column="odr_addr" property="addr"/>
+        <result column="odr_status" property="status"/>
+    </resultMap>
+</mapper>

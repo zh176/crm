@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.ProductMapper">
+
+    <resultMap id="ProductResultMap" type="com.bdqn.crm.model.Product">
+        <result column="prod_id" property="id"/>
+        <result column="prod_name" property="name"/>
+        <result column="prod_type" property="type"/>
+        <result column="prod_batch" property="batch"/>
+        <result column="prod_unit" property="unit"/>
+        <result column="prod_price" property="price"/>
+        <result column="prod_memo" property="memo"/>
+    </resultMap>
+</mapper>

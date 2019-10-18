@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.OrderConnectMapper">
+
+<resultMap id="OrderConnectResultMap" type="com.bdqn.crm.model.OrderConnect">
+    <result column="odd_id" property="id"/>
+    <result column="odd_order__id" property="orderId"/>
+    <result column="odd_prod_id" property="prodId"/>
+    <result column="odd_count" property="count"/>
+    <result column="odd_unit" property="unit"/>
+    <result column="odd_price" property="price"/>
+</resultMap>
+</mapper>

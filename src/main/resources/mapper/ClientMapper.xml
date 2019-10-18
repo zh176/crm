@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.ClientMapper">
+
+    <resultMap id="ClientResultMap" type="com.bdqn.crm.model.Client">
+        <result column="cust_no" property="no"/>
+        <result column="cust_name" property="name"/>
+        <result column="cust_region" property="region"/>
+        <result column="cust_manager_id" property="managerId"/>
+        <result column="cust_manager_name" property="managerName"/>
+        <result column="cust_level" property="level"/>
+        <result column="cust_level_label" property="levelLabel"/>
+        <result column="cust_satisfy" property="satisfy"/>
+        <result column="cust_credit" property="credit"/>
+        <result column="cust_addr" property="addr"/>
+        <result column="cust_zip" property="zip"/>
+        <result column="cust_tel" property="tel"/>
+        <result column="cust_fax" property="fax"/>
+        <result column="cust_website" property="website"/>
+        <result column="cust_licence_no" property="licenceNo"/>
+        <result column="cust_chieftain" property="chieftain"/>
+        <result column="cust_bankroll" property="bankroll"/>
+        <result column="cust_turnover" property="turnover"/>
+        <result column="cust_bank" property="bank"/>
+        <result column="cust_bank_account" property="bankAccount"/>
+        <result column="cust_national_tax_no" property="nationalTaxNo"/>
+        <result column="cust_status" property="status"/>
+    </resultMap>
+</mapper>

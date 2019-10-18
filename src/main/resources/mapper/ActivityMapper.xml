@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.ActivityMapper">
+
+    <resultMap id="ActivityResultMap" type="com.bdqn.crm.model.Activity">
+        <result column="atv_id" property="id"/>
+        <result column="atv_cust_no" property="custNo"/>
+        <result column="atv_date" property="date"/>
+        <result column="atv_plce" property="plce"/>
+        <result column="atv_title" property="title"/>
+        <result column="atv_desc" property="desc"/>
+    </resultMap>
+</mapper>

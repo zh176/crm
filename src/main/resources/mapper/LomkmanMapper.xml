@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.LomkmanMapper">
+
+    <resultMap id="LomkmanResultMap" type="com.bdqn.crm.model.Lomkman">
+        <result column="lkm_id" property="id"/>
+        <result column="lkm_cust_no" property="custNo"/>
+        <result column="lkm_name" property="name"/>
+        <result column="lkm_sex" property="sex"/>
+        <result column="lkm_postion" property="postion"/>
+        <result column="lkm_kel" property="kel"/>
+        <result column="lkm_mobile" property="mobile"/>
+        <result column="lkm_memo" property="memo"/>
+    </resultMap>
+</mapper>

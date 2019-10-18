@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.MarketMapper">
+
+    <resultMap id="MarketResultMap" type="com.bdqn.crm.model.Market">
+        <result column="chc_id" property="id"/>
+        <result column="chc_source" property="source"/>
+        <result column="chc_cust_name" property="custName"/>
+        <result column="chc_title" property="title"/>
+        <result column="chc_rate" property="rate"/>
+        <result column="chc_linkman" property="linkman"/>
+        <result column="chc_tel" property="tel"/>
+        <result column="chc_desc" property="desc"/>
+        <result column="chc_create_id" property="createId"/>
+        <result column="chc_create_name" property="createName"/>
+        <result column="chc_create_date" property="createDate"/>
+        <result column="chc_due_id" property="dueId"/>
+        <result column="chc_due_name" property="dueName"/>
+        <result column="chc_due_date" property="dueDate"/>
+        <result column="chc_status" property="status"/>
+    </resultMap>
+</mapper>
