@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.StorageMapper">
+
+<resultMap id="StorageResultMap" type="com.bdqn.crm.model.Storage">
+    <result column="stk_id" property="id"/>
+    <result column="stk_prod_id" property="prodId"/>
+    <result column="stk_warehouse" property="warehouse"/>
+    <result column="stk_ware" property="ware"/>
+    <result column="stk_count" property="count"/>
+    <result column="stk_memo" property="memo"/>
+</resultMap>
+</mapper>

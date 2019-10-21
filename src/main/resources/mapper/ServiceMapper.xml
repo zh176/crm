@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.ServiceMapper">
+
+    <resultMap id="ServiceResultMap" type="com.bdqn.crm.model.Service">
+        <result column="svr_id" property="id"/>
+        <result column="svr_type" property="type"/>
+        <result column="svr_title" property="title"/>
+        <result column="svr_cust_no" property="custNo"/>
+        <result column="svr_status" property="status"/>
+        <result column="svr_request" property="request"/>
+        <result column="svr_create_id" property="createId"/>
+        <result column="svr_create_name" property="createName"/>
+        <result column="svr_create_date" property="createDate"/>
+        <result column="svr_due_id" property="dueId"/>
+        <result column="svr_due_name" property="dueName"/>
+        <result column="svr_due_date" property="dueDate"/>
+        <result column="svr_deal" property="deal"/>
+        <result column="svr_deal_id" property="dealId"/>
+        <result column="svr_deal_name" property="dealName"/>
+        <result column="svr_result_date" property="resultDate"/>
+        <result column="svr_result" property="result"/>
+        <result column="svr_satisfy" property="satisfy"/>
+    </resultMap>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.CustomerMapper">
+
+    <resultMap id="CustomerResultMap" type="com.bdqn.crm.model.Customer">
+        <result column="lst_id" property="id"/>
+        <result column="lst_cust_no" property="custNo"/>
+        <result column="lst_cust_manager_id" property="custManagerId"/>
+        <result column="lst_cust_manager_name" property="custManagerName"/>
+        <result column="lst_last_order_date" property="lastOrderDate"/>
+        <result column="lst_lost_date" property="lostDate"/>
+        <result column="lst_delay" property="delay"/>
+        <result column="lst_reason" property="reason"/>
+        <result column="lst_status" property="status"/>
+    </resultMap>
+</mapper>
