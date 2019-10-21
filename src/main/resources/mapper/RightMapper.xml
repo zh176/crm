@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.study.mapper.RoleMapper">
-    <resultMap id="RightMapper" type="com.bdqn.crm.model.Right">
+<mapper namespace="com.bdqn.crm.mapper.RightMapper">
+    <resultMap id="RightResultMap" type="com.bdqn.crm.model.Right">
         <result column="right_code" property="code"/>
         <result column="right_parent_code" property="parentCode"/>
         <result column="right_type" property="type"/>
@@ -9,4 +9,11 @@
         <result column="right_url" property="url"/>
         <result column="right_tip" property="tip"/>
     </resultMap>
+    <select id="getRightByRole" resultMap="RightResultMap">
+        SELECT T1.right_code,T1.right_text,T1.right_url,T1.right_tip from
+        sys_right T1 LEFT JOIN sys_role_right T2 ON T1.right_code = T2.rf_right_code
+        LEFT JOIN sys_role T3 ON T2.rf_role_id = T3.role_id
+        WHERE T3.role_id = #{roleId};
+    </select>
+
 </mapper>

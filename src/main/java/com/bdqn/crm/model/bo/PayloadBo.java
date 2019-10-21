@@ -1,26 +1,22 @@
-package com.bdqn.crm.model;
+package com.bdqn.crm.model.bo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
 /**
  * @author 忍
- * @title: User
+ * @title: PayloadBo
  * @projectName crm-project
  * @description: TODO
- * @date 2019/10/1614:18
+ * @date 2019/10/1716:41
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User implements Serializable {
-    private Long id;
-    private String name;
-    private String password;
+public class PayloadBo {
+    private Long userId;
+    private String userName;
     private Integer roleId;
     private String header;
-    private boolean flag;
 }

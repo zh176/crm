@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bdqn.crm.mapper.UserMapper">
 
-   <resultMap id="UserResult" type="com.bdqn.crm.model.User">
+   <resultMap id="UserResultMap" type="com.bdqn.crm.model.User">
       <result column="user_id" property="id"/>
       <result column="user_name" property="name"/>
       <result column="user_password" property="password"/>
@@ -10,7 +10,7 @@
       <result column="user_flag" property="flag"/>
    </resultMap>
    
-   <select id="getUser" resultMap="UserResult">
+   <select id="getUser" resultMap="UserResultMap">
       SELECT user_id ,user_role_id,user_flag
       FROM sys_user
       WHERE user_name = #{userName} AND user_password = #{pwd}

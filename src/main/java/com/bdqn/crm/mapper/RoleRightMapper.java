@@ -19,6 +19,12 @@ import java.util.List;
  * @date 2019/10/1623:06
  */
 @Component
-public interface RoleRightMapper {
-    List<RoleRight> getAll();
+public interface RoleRightMapper extends BaseMapper<RoleRight> {
+    /**
+     * 根据权限id-菜单编号获取操作
+     * @param roleId 权限id
+     * @param rightCode 菜单编号
+     * @return 可操作的字符串
+     */
+    String getOperate(long roleId,String rightCode);
 }

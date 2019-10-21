@@ -10,5 +10,9 @@
     <select id="getAll" resultMap="RoleRightResultMap">
         SELECT * FROM sys_role_right
     </select>
+    <select id="getOperate" resultMap="RoleRightResultMap">
+        SELECT * FROM sys_role_right WHERE
+        rf_role_id = #{roleId} AND rf_right_code = #{rightCode};
+    </select>
 
 </mapper>
