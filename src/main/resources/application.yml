@@ -10,6 +10,27 @@ spring: #表示该配置直接为Spring容器负责处理
       　　initial-size: 5     #初始化提供的连接数
       　　max-total: 5          #最大的连接数
       　　max-wait-millis: 200        #等待连接获取的最大超时时间
+  thymeleaf:
+    cache: false #关闭模板缓存
+  mvc:
+    view:
+      prefix: classpath:/templates/ # 配置视图映射路径
+      suffix: .html # 视图后缀名
+  resources:
+    static-locations: classpath:/static/
+  redis:
+    database: 0 #redis数据库索引（默认为0）
+    timeout: 5000ms # 连接超时时间
+    host: 192.168.195.102
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8 # 连接池中的最大连接
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+
 mybatis:
   mapper-locations: classpath:/mapper/*Mapper.xml #Mapper文件位置
   type-aliases-package: com.bdqn.crm.model

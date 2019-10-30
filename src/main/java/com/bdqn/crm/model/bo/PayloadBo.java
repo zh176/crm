@@ -18,5 +18,6 @@ public class PayloadBo {
     private Long userId;
     private String userName;
     private Integer roleId;
+    private String roleName;
     private String header;
 }

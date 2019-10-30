@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author 忍
@@ -20,7 +21,9 @@ public class User implements Serializable {
     private Long id;
     private String name;
     private String password;
+    private String phone;
     private Integer roleId;
     private String header;
+    private Date creatTime;
     private boolean flag;
 }

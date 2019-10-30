@@ -4,6 +4,9 @@ import com.bdqn.crm.model.User;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.BaseMapper;
 
+import javax.validation.constraints.Max;
+import java.util.List;
+
 /**
  * @author 忍
  * @title: UserMapper
@@ -20,4 +23,23 @@ public interface UserMapper extends BaseMapper<User> {
      * @return
      */
     User getUser(String userName, String pwd);
+    /**
+     * 添加用户
+     * @param user
+     * @return
+     */
+    boolean addUser(User user);
+
+    /**
+     * 修改用户
+     * @param user
+     * @return boolean
+     */
+    boolean updateUser(User user);
+
+    /**
+     * 查询所有用户
+     * @return
+     */
+    List<User> getAllUser();
 }

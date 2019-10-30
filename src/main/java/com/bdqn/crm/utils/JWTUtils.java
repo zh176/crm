@@ -43,6 +43,7 @@ public class JWTUtils {
                     .withClaim("userName", payloadBo.getUserName())
                     .withClaim("userId", payloadBo.getUserId())
                     .withClaim("roleId", payloadBo.getRoleId())
+                    .withClaim("roleName", payloadBo.getRoleName())
                     .withClaim("header", payloadBo.getHeader())
                     .withExpiresAt(date)//token到期时间
                     .withIssuedAt(new

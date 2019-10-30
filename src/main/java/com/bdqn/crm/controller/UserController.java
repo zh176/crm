@@ -9,7 +9,10 @@ import com.bdqn.crm.utils.result.ResultView;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Date;
 
 /**
  * @author 忍
@@ -33,8 +36,23 @@ public class UserController {
     }
 
     @ApiOperation("添加用户")
-    @PutMapping("/add")
+    @PostMapping("/add")
     public ResultView addUser(User user){
-        return null;
+        long s = System.currentTimeMillis();
+        boolean flag = userService.addUser(user);
+        long e = System.currentTimeMillis();
+        System.out.println(e-s);
+
+        return ResultView.success(flag);
     }
+    @ApiOperation("修改用户")
+    @PutMapping("/upd")
+    public ResultView updateUser(User user){
+        long s = System.currentTimeMillis();
+        boolean result = userService.updateUser(user);
+        long e = System.currentTimeMillis();
+        System.out.println(e-s);
+        return ResultView.success(result);
+    }
+
 }

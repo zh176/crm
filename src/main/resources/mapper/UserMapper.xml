@@ -8,12 +8,26 @@
       <result column="user_password" property="password"/>
       <result column="user_role_id" property="roleId"/>
       <result column="user_flag" property="flag"/>
+       <result column="user_creat_time" property="creatTime"/>
+       <result  column="user_phone" property="phone"/>
    </resultMap>
-   
-   <select id="getUser" resultMap="UserResultMap">
+    <insert id="addUser" parameterType="com.bdqn.crm.model.User">
+        INSERT INTO sys_user(user_id,user_name,user_password,user_role_id,user_phone,user_flag,user_creat_time)
+        VALUES(#{id},#{name},#{password},#{roleId},#{phone},#{flag},#{creatTime})
+    </insert>
+
+    <update id="updateUser" parameterType="com.bdqn.crm.model.User">
+        UPDATE sys_user SET user_password=#{password},user_role_id=#{roleId},user_flag = #{flag}
+        WHERE user_id = #{id}
+    </update>
+
+    <select id="getUser" resultMap="UserResultMap">
       SELECT user_id ,user_role_id,user_flag
       FROM sys_user
       WHERE user_name = #{userName} AND user_password = #{pwd}
    </select>
+    <select id="getAllUser" resultMap="UserResultMap">
+        SELECT * FROM sys_user
+    </select>
 
 </mapper>

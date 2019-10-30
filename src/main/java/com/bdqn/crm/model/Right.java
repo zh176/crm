@@ -17,10 +17,12 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Right implements Serializable {
+
     private Integer code;
     private Integer parentCode;
     private  String type;
     private String text;
     private String url;
     private String tip;
+    private String ico;
 }
