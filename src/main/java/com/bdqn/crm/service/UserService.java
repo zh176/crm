@@ -81,6 +81,6 @@ public class UserService {
     }
 
     public PageInfo<User> getAllUser(){
-        PageHelper.startPage()
+        return null;
     }
 }
