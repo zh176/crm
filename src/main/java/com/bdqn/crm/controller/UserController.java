@@ -8,6 +8,8 @@ import com.bdqn.crm.utils.result.PageResult;
 import com.bdqn.crm.utils.result.ResultView;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,6 +58,11 @@ public class UserController {
         return ResultView.success(result);
     }
     @ApiOperation("查询所有用户")
+    @ApiImplicitParams(
+            {
+                    @ApiImplicitParam(name = "condition",value ="{\"phone\":\"12345678911\",\"name\":\"admin\",\"flag\":\"1\"}" )
+            }
+    )
     @GetMapping("/all")
     public ResultView getAllUser(PagePrarm pagePrarm){
         PageResult p = userService.getAllUser(pagePrarm);
