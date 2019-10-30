@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bdqn.crm.mapper.ClientMapper">
-
     <resultMap id="ClientResultMap" type="com.bdqn.crm.model.Client">
         <result column="cust_no" property="no"/>
         <result column="cust_name" property="name"/>
@@ -22,8 +21,109 @@
         <result column="cust_bankroll" property="bankroll"/>
         <result column="cust_turnover" property="turnover"/>
         <result column="cust_bank" property="bank"/>
-        <result column="cust_bank_account" property="bankAccount"/>
+        <result column="cust_bank_accout" property="bankAccount"/>
         <result column="cust_national_tax_no" property="nationalTaxNo"/>
         <result column="cust_status" property="status"/>
     </resultMap>
+    <select id="findClient" resultMap="ClientResultMap">
+        select cust_no,cust_name,cust_region,cust_manager_id,cust_level_label
+        from cst_customer
+        <where>
+            <if test="no!=null">
+               and cust_no=#{no}
+            </if>
+            <if test="name!=null">
+                and cust_name=#{name}
+            </if>
+            <if test="region!=null">
+                and cust_region=#{region}
+            </if>
+            <if test="managerId!=null">
+                and cust_manager_id=#{managerId}
+            </if>
+            <if test="levelLabel!=null">
+                and cust_level_label=#{levelLabel}
+            </if>
+        </where>
+    </select>
+    <update id="updateClient" parameterType="com.bdqn.crm.model.Client">
+        update cst_customer
+        <set>
+            <if test="no!=null and no!=''">
+                cust_no=#{no},
+            </if>
+            <if test="name!=null and name!=''">
+                cust_name=#{name},
+            </if>
+            <if test="region!=null and region!=''">
+                cust_region=#{region},
+            </if>
+            <if test="managerId!=null and managerId!=''">
+                cust_manager_id=#{managerId},
+            </if>
+            <if test="managerName!=null and managerName!=''">
+                cust_manager_name=#{managerName},
+            </if>
+            <if test="levelLabel!=null and levelLabel!=''">
+                cust_level_label=#{levelLabel},
+            </if>
+            <if test="satisfy!=null and satisfy!=''">
+                cust_satisfy=#{satisfy},
+            </if>
+            <if test="credit!=null and credit!=''">
+                cust_credit=#{credit},
+            </if>
+            <if test="addr!=null and addr!=''">
+                cust_addr=#{addr},
+            </if>
+            <if test="zip!=null and zip!=''">
+                cust_zip=#{zip},
+            </if>
+            <if test="tel!=null and tel!=''">
+                cust_tel=#{tel},
+            </if>
+            <if test="fax!=null and fax!=''">
+                cust_fax=#{fax},
+            </if>
+            <if test="website!=null and website!=''">
+                cust_website=#{website},
+            </if>
+            <if test="licenceNo!=null and licenceNo!=''">
+                cust_licence_no=#{licenceNo},
+            </if>
+            <if test="chieftain!=null and chieftain!=''">
+                cust_chieftain=#{chieftain},
+            </if>
+            <if test="bankroll!=null and bankroll!=''">
+                cust_bankroll=#{bankroll},
+            </if>
+            <if test="turnover!=null and turnover!=''">
+                cust_turnover=#{turnover},
+            </if>
+            <if test="bank!=null and bank!=''">
+                cust_bank=#{bank},
+            </if>
+            <if test="bankAccount!=null and bankAccount!=''">
+                cust_bank_account=#{bankAccount},
+            </if>
+            <if test="nationalTaxNo!=null and nationalTaxNo!=''">
+                cust_national_tax_no=#{nationalTaxNo},
+            </if>
+            <if test="status!=null and status!=''">
+                cust_status=#{status},
+            </if>
+        </set>
+        where cust_no=#{no}
+    </update>
+    <delete id="deleteClient" parameterType="com.bdqn.crm.model.Client">
+        delete from cst_customer where cust_no=#{no} and cust_name=#{name}
+    </delete>
+    <insert id="addClient" parameterType="com.bdqn.crm.model.Client">
+      insert into cst_customer(cust_no,cust_name,cust_region,cust_manager_id,cust_manager_name,
+      cust_level_label,cust_satisfy,cust_credit,cust_addr,cust_zip,cust_tel,cust_fax,cust_website,
+      cust_licence_no,cust_chieftain,cust_bankroll,cust_turnover,cust_bank,cust_bank_accout,cust_national_tax_no,cust_status)
+      values
+      (#{no},#{name},#{region},#{managerId},#{managerName},#{levelLabel},#{satisfy},#{credit},#{addr},#{zip},#{tel}
+      ,#{fax},#{website},#{licenceNo},#{chieftain},#{bankroll},#{turnover},#{bank},#{bankAccount},#{nationalTaxNo},#{status})
+    </insert>
 </mapper>

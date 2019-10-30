@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @description: TODO
  * @date 2019/10/1813:53
  */
-@SpringBootConfiguration
+//@SpringBootConfiguration
 public class InterceptorConfig implements WebMvcConfigurer {
 
     @Autowired

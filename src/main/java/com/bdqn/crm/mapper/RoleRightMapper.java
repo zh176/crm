@@ -18,7 +18,7 @@ import java.util.List;
  * @description: TODO
  * @date 2019/10/1623:06
  */
-@Component
+@Repository
 public interface RoleRightMapper extends BaseMapper<RoleRight> {
     /**
      * 根据权限id-菜单编号获取操作
