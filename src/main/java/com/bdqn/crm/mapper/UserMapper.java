@@ -41,5 +41,5 @@ public interface UserMapper extends BaseMapper<User> {
      * 查询所有用户
      * @return
      */
-    List<User> getAllUser();
+    List<User> getAllUser(String name,String phone,Integer flag);
 }

@@ -26,11 +26,11 @@ public class PagePrarm {
     /**
      * 要查的字段(model的属性名)
      */
-    private String sqlColumns;
+//    private String sqlColumns;
     /**
      * 排序
      */
-    private String sort;
+//    private String sort;
     /**
      * 条件
      */

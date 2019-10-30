@@ -6,6 +6,7 @@ import com.bdqn.crm.utils.CreateUtil;
 import com.bdqn.crm.utils.result.PagePrarm;
 import com.bdqn.crm.utils.result.PageResult;
 import com.bdqn.crm.utils.result.ResultView;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +55,10 @@ public class UserController {
         System.out.println(e-s);
         return ResultView.success(result);
     }
-
+    @ApiOperation("查询所有用户")
+    @GetMapping("/all")
+    public ResultView getAllUser(PagePrarm pagePrarm){
+        PageResult p = userService.getAllUser(pagePrarm);
+        return ResultView.success(p);
+    }
 }

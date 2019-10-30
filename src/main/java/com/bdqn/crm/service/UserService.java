@@ -80,7 +80,27 @@ public class UserService {
         }
     }
 
-    public PageInfo<User> getAllUser(){
-        return null;
+    public PageResult getAllUser(PagePrarm pagePrarm){
+        Integer pageIndex = pagePrarm.getPageIndex();
+        Integer pageSize = pagePrarm.getPageSize();
+
+        JSONObject object = JSONObject.parseObject(pagePrarm.getCondition());
+        PageHelper.startPage(pageIndex,pageSize);
+        String name = null;
+        String phone = null;
+        Integer flag = null;
+        if (object!=null){
+            name = object.getString("name").trim();
+            phone = object.getString("phone").trim();
+            flag = object.getInteger("flag");
+        }
+
+        List<User> users = userMapper.getAllUser(name, phone, flag);
+        PageInfo<User> pageInfo = new PageInfo<>(users);
+        PageResult pageResult = new PageResult(pageIndex, pageSize, Integer.parseInt(pageInfo.getTotal() + ""),
+                pageInfo.getList());
+
+        return pageResult;
     }
+
 }

@@ -28,6 +28,17 @@
    </select>
     <select id="getAllUser" resultMap="UserResultMap">
         SELECT * FROM sys_user
+        <where>
+            <if test="name != null and name != '' ">
+                and user_name = #{name}
+            </if>
+            <if test="phone != null and phone != '' ">
+                and user_phone = #{phone}
+            </if>
+            <if test="flag == 1 or flag == 0">
+                and user_flag = #{flag}
+            </if>
+        </where>
     </select>
 
 </mapper>
