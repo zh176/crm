@@ -14,9 +14,9 @@ import java.util.Date;
  * @description: TODO
  * @date 2019/10/1614:18
  */
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class User implements Serializable {
     private Long id;
     private String name;
