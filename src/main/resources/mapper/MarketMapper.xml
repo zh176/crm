@@ -19,4 +19,40 @@
         <result column="chc_due_date" property="dueDate"/>
         <result column="chc_status" property="status"/>
     </resultMap>
+
+    <select id="getAllMarket" resultMap="MarketResultMap">
+      SELECT * FROM sal_chance
+        <where>
+            <if test="custName != null and custName != '' ">
+                and chc_cust_name =#{custName}
+            </if>
+            <if test="title != null and title != '' ">
+                and chc_title =#{title}
+            </if>
+            <if test="linkman != null and linkman != '' ">
+                and chc_linkman =#{linkman}
+            </if>
+        </where>
+    </select>
+
+    <select id="MarketById"  resultType="com.bdqn.crm.model.Market" resultMap="MarketResultMap">
+      SELECT * FROM sal_chance WHERE chc_id=#{id}
+    </select>
+
+    <insert id="addMarket" parameterType="com.bdqn.crm.model.Market">
+      INSERT INTO sal_chance(chc_source,chc_cust_name,chc_title,chc_rate,chc_linkman,chc_tel,chc_desc,chc_create_id,chc_create_name,chc_create_date,  chc_due_id,chc_due_name,chc_due_date,chc_status)
+                        VALUES (#{source},#{custName},#{title},#{rate},#{linkman},#{tel},#{desc},#{createId},#{createName},#{createDate},#{dueId},#{dueName},#{dueDate},#{status})
+    </insert>
+
+    <update id="updateMarket" parameterType="com.bdqn.crm.model.Market">
+      UPDATE sal_chance SET
+                    chc_source=#{source},chc_cust_name=#{custName},chc_title=#{title},chc_rate=#{rate},chc_linkman=#{linkman},chc_tel=#{tel},
+                    chc_desc=#{desc},chc_create_id=#{createId},chc_create_name=#{createName},chc_create_date=#{createDate},chc_due_id=#{dueId},
+                    chc_due_name=#{dueName},chc_due_date=#{dueDate},chc_status=#{status} WHERE chc_id=#{id}
+    </update>
+
+    <delete id="deletMarket" parameterType="com.bdqn.crm.model.Market">
+      DELETE FROM sal_chance WHERE chc_id=#{id}
+    </delete>
+
 </mapper>
