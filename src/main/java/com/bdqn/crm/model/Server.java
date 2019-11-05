@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Service {
+public class Server {
     private Integer id;
     private String type;
     private String title;

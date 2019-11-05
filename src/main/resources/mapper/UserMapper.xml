@@ -17,7 +17,11 @@
     </insert>
 
     <update id="updateUser" parameterType="com.bdqn.crm.model.User">
-        UPDATE sys_user SET user_password=#{password},user_role_id=#{roleId},user_flag = #{flag}
+        UPDATE sys_user SET user_phone = #{phone},user_role_id=#{roleId},user_flag = #{flag},user_name=#{name}
+        WHERE user_id = #{id}
+    </update>
+    <update id="delUserById">
+        UPDATE sys_user SET user_flag = 0
         WHERE user_id = #{id}
     </update>
 
@@ -30,7 +34,7 @@
         SELECT * FROM sys_user
         <where>
             <if test="name != null and name != '' ">
-                and user_name = #{name}
+                and user_name like "%"#{name}"%"
             </if>
             <if test="phone != null and phone != '' ">
                 and user_phone = #{phone}
@@ -39,6 +43,10 @@
                 and user_flag = #{flag}
             </if>
         </where>
+    </select>
+    <select id="getUserById" resultMap="UserResultMap">
+        SELECT * FROM sys_user
+        WHERE user_id = #{id}
     </select>
 
 </mapper>

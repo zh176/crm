@@ -1,5 +1,6 @@
 package com.bdqn.crm.mapper;
 
+import com.bdqn.crm.model.Role;
 import com.bdqn.crm.model.RoleRight;
 import com.bdqn.crm.utils.result.PagePrarm;
 import org.apache.ibatis.annotations.Mapper;
@@ -27,4 +28,26 @@ public interface RoleRightMapper extends BaseMapper<RoleRight> {
      * @return 可操作的字符串
      */
     String getOperate(long roleId,String rightCode);
+
+    /**
+     * 根据角色id 菜单id 循环添加
+     * @param roleId
+     * @param rightIds
+     * @return
+     */
+    boolean addRoleRights(int roleId,String[] rightIds);
+
+    /**
+     * 删除权限-菜单
+     * @param roleId
+     * @return
+     */
+    boolean delRoleRight(Integer roleId);
+
+    /**
+     * 修改删除权限-菜单
+     * @param role
+     * @return
+     */
+    boolean updRoleRight(Role role);
 }

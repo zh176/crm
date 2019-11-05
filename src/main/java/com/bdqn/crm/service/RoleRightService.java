@@ -12,6 +12,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
@@ -35,5 +36,24 @@ public class RoleRightService {
             throw new MyRuntimeException(ResultView.error(ResultEnum.CODE_12));
         }
         return operate;
+    }
+
+    public boolean addRoleRights(Integer roleId,String rightId){
+        String[] rightIds = rightId.split(",");
+        if (roleId!=null && rightIds.length>0){
+            boolean result = roleRightMapper.addRoleRights(roleId, rightIds);
+            return result;
+        }
+        throw new MyRuntimeException(ResultView.error("参数异常"));
+    }
+    @Transactional(rollbackFor = Exception.class)
+    public boolean updRoleRight(Integer roleId,String rightId){
+        String[] rightIds = rightId.split(",");
+        if (roleId!=null && rightIds.length>0){
+            roleRightMapper.delRoleRight(roleId);
+            boolean result = roleRightMapper.addRoleRights(roleId, rightIds);
+            return result;
+        }
+        throw new MyRuntimeException(ResultView.error("参数异常"));
     }
 }

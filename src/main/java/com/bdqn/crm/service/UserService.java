@@ -44,7 +44,7 @@ public class UserService {
         if (!user.isFlag()){
             throw new MyRuntimeException(ResultView.error(ResultEnum.CODE_7));
         }
-        String roleName = roleMapper.getRoleById(user.getRoleId());
+        String roleName = roleMapper.getRoleNameById(user.getRoleId());
         PayloadBo payloadBo = new PayloadBo(user.getId(), userName, user.getRoleId(),roleName, user.getHeader());
         String token = JWTUtils.creatToken(payloadBo);
         return token;
@@ -103,4 +103,24 @@ public class UserService {
         return pageResult;
     }
 
+    public User getUserById (Long id){
+        if (id!=null){
+            return userMapper.getUserById(id);
+        }
+        throw new MyRuntimeException(ResultView.error("参数异常"));
+    }
+
+    public boolean delUserById(Long id){
+        try{
+            if (id != null){
+                userMapper.delUserById(id);
+                return true;
+            }
+            throw new MyRuntimeException(ResultView.error("参数异常"));
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+
+    }
 }

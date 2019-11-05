@@ -42,4 +42,18 @@ public interface UserMapper extends BaseMapper<User> {
      * @return
      */
     List<User> getAllUser(String name,String phone,Integer flag);
+
+    /**
+     * 根据id的获取用户
+     * @param id
+     * @return
+     */
+    User getUserById(Long id);
+
+    /**
+     * 根据id删除用户
+     * @param id
+     * @return
+     */
+    boolean delUserById(Long id);
 }

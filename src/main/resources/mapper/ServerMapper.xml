@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bdqn.crm.mapper.ServiceMapper">
+<mapper namespace="com.bdqn.crm.mapper.ServerMapper">
 
-    <resultMap id="ServiceResultMap" type="com.bdqn.crm.model.Service">
+    <resultMap id="ServerResultMap" type="com.bdqn.crm.model.Server">
         <result column="svr_id" property="id"/>
         <result column="svr_type" property="type"/>
         <result column="svr_title" property="title"/>
@@ -22,4 +22,9 @@
         <result column="svr_result" property="result"/>
         <result column="svr_satisfy" property="satisfy"/>
     </resultMap>
+    <insert id="creatServer" parameterType="com.bdqn.crm.model.DataDic">
+        INSERT INTO
+        cst_service(svr_type,svr_title,svr_cust_no,svr_status,svr_request,svr_create_id,svr_create_name,svr_create_date,svr_due_id,svr_due_name,svr_due_date,svr_deal,svr_seal_id,svr_result_name,svr_result_date,svr_result,svr_satisfy)
+        VALUES (#{type},#{title},#{cuttNo},#{status},#{request},#{createId},#{createName},#{createDate},#{dueId},#{dueName},#{dueDate},#{deal},#{dealId},#{dealName},#{resultDate},#{result},#{satisfy))
+    </insert>
 </mapper>

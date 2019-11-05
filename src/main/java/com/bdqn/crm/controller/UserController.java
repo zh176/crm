@@ -50,11 +50,9 @@ public class UserController {
     }
     @ApiOperation("修改用户")
     @PutMapping("/upd")
-    public ResultView updateUser(User user){
-        long s = System.currentTimeMillis();
+    public ResultView updateUser(@RequestBody User user){
+        System.out.println(user);
         boolean result = userService.updateUser(user);
-        long e = System.currentTimeMillis();
-        System.out.println(e-s);
         return ResultView.success(result);
     }
     @ApiOperation("查询所有用户")
@@ -67,5 +65,18 @@ public class UserController {
     public ResultView getAllUser(PagePrarm pagePrarm){
         PageResult p = userService.getAllUser(pagePrarm);
         return ResultView.success(p);
+    }
+
+    @GetMapping("/{id}")
+    public ResultView getUSerById(@PathVariable Long id){
+        User user = userService.getUserById(id);
+        return ResultView.success(user);
+    }
+
+    @ApiOperation("根据id删除元素")
+    @DeleteMapping("/{id}")
+    public ResultView delUser(@PathVariable Long id){
+        boolean result = userService.delUserById(id);
+        return ResultView.success(result);
     }
 }

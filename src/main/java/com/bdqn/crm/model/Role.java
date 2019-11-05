@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author 忍
@@ -21,4 +22,5 @@ public class Role implements Serializable {
     private String name;
     private String description;
     private boolean flag;
+    private Date creatTime;
 }

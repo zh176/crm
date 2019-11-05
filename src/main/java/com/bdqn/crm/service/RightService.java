@@ -25,11 +25,11 @@ import java.util.List;
  * @date 2019/10/1810:05
  */
 @Service
-@CacheConfig(cacheNames = "rightCache")
+//@CacheConfig(cacheNames = "rightCache")
 public class RightService  {
     @Autowired
     RightMapper rightMapper;
-    @Cacheable(key = "#p0",unless = "#result == null")
+//    @Cacheable(key = "#p0",unless = "#result == null")
     public List<Right> getRightByRole(long roleId){
         if (StringUtils.isEmpty(roleId)){
             throw new MyRuntimeException(ResultView.error("参数错误"));

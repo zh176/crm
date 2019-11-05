@@ -7,6 +7,26 @@
         <result column="rf_right_code" property="rightCode"/>
         <result column="rf_opeart" property="operate"/>
     </resultMap>
+    <insert id="addRoleRights">
+        INSERT INTO sys_role_right(rf_role_id,rf_right_code,rf_opeart)
+        VALUES
+        <foreach collection="rightIds" item="v" separator=",">
+            (
+                #{roleId},
+                #{v},
+                'view'
+            )
+        </foreach>
+    </insert>
+    <update id="updRoleRight" parameterType="com.bdqn.crm.model.RoleRight">
+        UPDATE sys_role_right SET
+    </update>
+    <delete id="delRoleRight">
+        DELETE FROM sys_role_right
+        WHERE rf_role_id = #{roleId}
+    </delete>
+
+
     <select id="getAll" resultMap="RoleRightResultMap">
         SELECT * FROM sys_role_right
     </select>
