@@ -126,4 +126,24 @@
       (#{no},#{name},#{region},#{managerId},#{managerName},#{levelLabel},#{satisfy},#{credit},#{addr},#{zip},#{tel}
       ,#{fax},#{website},#{licenceNo},#{chieftain},#{bankroll},#{turnover},#{bank},#{bankAccount},#{nationalTaxNo},#{status})
     </insert>
+    <select id="getAllClient" resultMap="ClientResultMap">
+        SELECT * FROM cst_customer
+        <where>
+            <if test="no != null and no != '' ">
+                and cust_no = #{no}
+            </if>
+            <if test="name != null and name != '' ">
+                and cust_name = #{name}
+            </if>
+            <if test="region !=0 and region >=5">
+                and cust_region = #{region}
+            </if>
+            <if test="managerName != null and managerName !=''">
+                and cust_manager_name = #{managerName}
+            </if>
+            <if test="level != 0 and level >=2 ">
+                and cust_level = #{level}
+            </if>
+        </where>
+    </select>
 </mapper>
