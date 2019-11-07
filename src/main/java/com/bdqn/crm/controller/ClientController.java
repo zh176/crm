@@ -30,15 +30,15 @@ public class ClientController {
 
     @ApiOperation(value = "修改客户信息")
     @PutMapping("/update")
-    public ResultView updateClient(Client client){
+    public ResultView updateClient(@RequestBody Client client){
         boolean result = clientService.updateClient(client);
         return ResultView.success(result);
     }
 
     @ApiOperation(value = "删除客户信息")
-    @DeleteMapping("/del")
-    public ResultView deleteClient(String no,String name){
-        boolean flag= clientService.deleteClient(no,name);
+    @DeleteMapping("/del/{no}")
+    public ResultView deleteClient(@PathVariable String no){
+        boolean flag= clientService.deleteClient(no);
         return ResultView.success(flag);
     }
     @ApiOperation(value = "添加客户信息")
@@ -53,5 +53,12 @@ public class ClientController {
     public ResultView getAllClient(PagePrarm pagePrarm){
         PageResult pageResult=clientService.getAllClient(pagePrarm);
         return ResultView.success(pageResult);
+    }
+
+    @ApiOperation(value = "根据Id查询客户信息")
+    @GetMapping("/get/{no}")
+    public ResultView updateById(@PathVariable String no){
+        Client result=clientService.getClientByNo(no);
+        return  ResultView.success(result);
     }
 }
