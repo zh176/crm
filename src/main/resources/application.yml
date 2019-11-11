@@ -2,9 +2,9 @@ spring: #表示该配置直接为Spring容器负责处理
   datasource:
     type: com.alibaba.druid.pool.DruidDataSourceC3P0Adapter #配置当前要使用的数据源类型
     driver-class-name: com.mysql.cj.jdbc.Driver #配置mysql驱动类
-    username: root
-    password: 123456
-    url: jdbc:mysql://192.168.43.197:3306/crm?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: java
+    password: Java147258@
+    url: jdbc:mysql://120.79.42.112:3306/crm?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
     dbcp2:
       　　min-idle: 5         #数据库连接池的最小维持连接数
       　　initial-size: 5     #初始化提供的连接数
