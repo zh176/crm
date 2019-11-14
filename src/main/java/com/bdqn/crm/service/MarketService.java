@@ -1,10 +1,12 @@
 package com.bdqn.crm.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bdqn.crm.exception.MyRuntimeException;
 import com.bdqn.crm.mapper.MarketMapper;
 import com.bdqn.crm.model.Market;
 import com.bdqn.crm.utils.result.PagePrarm;
 import com.bdqn.crm.utils.result.PageResult;
+import com.bdqn.crm.utils.result.ResultView;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +26,8 @@ public class MarketService {
      * @return
      */
     public Market MarketById(Integer id){
-        Market market = marketMapper.MarketById(id);
-        return market;
+        return marketMapper.MarketById(id);
+
     }
 
     /**
@@ -63,17 +65,26 @@ public class MarketService {
 
     /**
      * 修改
-     * @param market
+     * @param
      */
-    public void updateMarket(Market market){
-        marketMapper.updateMarket(market);
-
+    public boolean updateMarket(Market market){
+        try {
+            if (market != null){
+                marketMapper.updateMarket(market);
+                return true;
+            }
+            throw new MyRuntimeException(ResultView.error("参数异常"));
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /*
     删除
      */
-    public void deletMarket(Integer id){
+    public boolean deletMarket(Integer id){
         marketMapper.deletMarket(id);
+        return true;
     }
 }

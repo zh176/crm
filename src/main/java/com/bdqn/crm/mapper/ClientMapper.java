@@ -28,9 +28,8 @@ public interface ClientMapper extends BaseMapper<Client> {
     /**
      * 删除客户信息
      * @param no
-     * @param name
      */
-    boolean deleteClient(String no,String name);
+    boolean deleteClient(String no);
 
     /**
      * 添加客户信息
@@ -43,4 +42,11 @@ public interface ClientMapper extends BaseMapper<Client> {
      * @return
      */
     List<Client> getAllClient(String no,String name,String region,String managerName,Integer level);
+
+    /**
+     * 根据id查询客户
+     * @param no
+     * @return
+     */
+    Client getClientByNo(String no);
 }

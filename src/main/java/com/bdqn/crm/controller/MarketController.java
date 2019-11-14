@@ -21,8 +21,8 @@ public class MarketController {
     MarketService marketService;
 
     @ApiOperation(value = "根据Id获取信息")
-    @GetMapping("/list")
-    public ResultView MarketById(Integer id){
+    @GetMapping("/list/{id}")
+    public ResultView MarketById(@PathVariable Integer id){
         Market market = marketService.MarketById(id);
         return ResultView.success(market);
     }
@@ -36,10 +36,10 @@ public class MarketController {
     }
 
     @ApiOperation(value="删除信息")
-    @DeleteMapping("/delet")
-    public ResultView deletMarket(Integer id){
-        marketService.deletMarket(id);
-        return ResultView.success();
+    @DeleteMapping("/delet/{id}")
+    public ResultView deletMarket(@PathVariable Integer id){
+        boolean flag = marketService.deletMarket(id);
+        return ResultView.success(flag);
     }
 
     @ApiOperation(value = "添加信息")
@@ -50,9 +50,9 @@ public class MarketController {
     }
 
     @ApiOperation(value = "修改信息")
-    @PostMapping("/update")
-    public ResultView updateMarket(Market market){
-        marketService.updateMarket(market);
-        return ResultView.success();
+    @PutMapping("/update")
+    public ResultView updateMarket(@RequestBody Market market){
+       boolean flag =  marketService.updateMarket(market);
+        return ResultView.success(flag);
     }
 }

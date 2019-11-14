@@ -39,13 +39,14 @@ public class ClientService {
             return false;
         }
     }
-    public boolean deleteClient(String no,String name){
-        clientMapper.deleteClient(no,name);
+    public boolean deleteClient(String no){
+        clientMapper.deleteClient(no);
         return true;
     }
     public boolean addClient(Client client) {
         client.setNo(CreateUtil.id()+"");
         clientMapper.addClient(client);
+        client.setStatus("1");
         return true;
     }
 
@@ -70,5 +71,9 @@ public class ClientService {
         PageInfo<Client> pageInfo=new PageInfo<>(clients);
         PageResult pageResult=new PageResult(pageIndex,pageSize,Integer.parseInt(pageInfo.getTotal()+""),pageInfo.getList());
         return pageResult;
+    }
+
+    public Client getClientByNo(String no){
+        return clientMapper.getClientByNo(no);
     }
 }
