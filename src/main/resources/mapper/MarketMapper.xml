@@ -22,7 +22,7 @@
 
     <select id="getAllMarket" resultMap="MarketResultMap">
       SELECT * FROM sal_chance
-        <where>
+        WHERE chc_status='1'
             <if test="custName != null and custName != '' ">
                 and chc_cust_name =#{custName}
             </if>
@@ -32,11 +32,10 @@
             <if test="linkman != null and linkman != '' ">
                 and chc_linkman =#{linkman}
             </if>
-        </where>
     </select>
 
     <select id="MarketById"  resultType="com.bdqn.crm.model.Market" resultMap="MarketResultMap">
-      SELECT * FROM sal_chance WHERE chc_id=#{id}
+      SELECT * FROM sal_chance WHERE chc_id=#{id} AND chc_status='1'
     </select>
 
     <insert id="addMarket" parameterType="com.bdqn.crm.model.Market">
@@ -45,14 +44,28 @@
     </insert>
 
     <update id="updateMarket" parameterType="com.bdqn.crm.model.Market">
-      UPDATE sal_chance SET
-                    chc_source=#{source},chc_cust_name=#{custName},chc_title=#{title},chc_rate=#{rate},chc_linkman=#{linkman},chc_tel=#{tel},
-                    chc_desc=#{desc},chc_create_id=#{createId},chc_create_name=#{createName},chc_create_date=#{createDate},chc_due_id=#{dueId},
-                    chc_due_name=#{dueName},chc_due_date=#{dueDate},chc_status=#{status} WHERE chc_id=#{id}
+      UPDATE sal_chance
+        <set>
+            <if test="source!=null and source!=''">chc_source=#{source},</if>
+            <if test="custName!=null and custName!=''">chc_cust_name=#{custName},</if>
+            <if test="title!=null and title!=''">chc_title=#{title},</if>
+            <if test="rate!=null and rate!=''">chc_rate=#{rate},</if>
+            <if test="linkman!=null and linkman!=''">chc_linkman=#{linkman},</if>
+            <if test="tel!=null and tel!=''">chc_tel=#{tel},</if>
+            <if test="desc!=null and desc!=''">chc_desc=#{desc}</if>
+            <if test="createId!=null and createId!=''">chc_create_id=#{createId},</if>
+            <if test="createName!=null and createName!=''">chc_create_name=#{createName},</if>
+            <if test="createDate!=null and createDate!=''">chc_create_date=#{createDate},</if>
+            <if test="dueName!=null and dueName!=''">chc_due_name=#{dueName},</if>
+            <if test="dueDate!=null and dueDate!=''">chc_due_date=#{dueDate},</if>
+            <if test="status!=null and status!=''">chc_status=#{status}</if>
+        </set>
+              WHERE chc_id=#{id}
     </update>
 
-    <delete id="deletMarket" parameterType="com.bdqn.crm.model.Market">
-      DELETE FROM sal_chance WHERE chc_id=#{id}
-    </delete>
+    <update id="deletMarket" parameterType="com.bdqn.crm.model.Market">
+      UPDATE  sal_chance SET chc_status='0' WHERE chc_id=#{id}
+    </update>
+
 
 </mapper>

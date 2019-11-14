@@ -1,6 +1,7 @@
 package com.bdqn.crm.mapper;
 
 import com.bdqn.crm.model.Market;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.common.BaseMapper;
 
@@ -11,7 +12,7 @@ import java.util.MissingResourceException;
 @Repository
 public interface MarketMapper {
     /**
-     * 根据ID删除信息
+     * 根据ID查询信息
      * @param id
      * @return
      */
@@ -21,7 +22,7 @@ public interface MarketMapper {
      * 查询
      * @return
      */
-    List<Market> getAllMarket(String custName, String title,String linkman);
+    List<Market> getAllMarket(String custName,String title,String linkman);
 
     /**
      * 添加
@@ -33,13 +34,13 @@ public interface MarketMapper {
      * 删除
      * @param id
      */
-    void deletMarket(Integer id);
+    boolean deletMarket(Integer id);
 
     /**
      * 修改
-     * @param market
+     * @param
      */
-    void updateMarket(Market market);
+    boolean updateMarket(Market market);
 
 
 }
