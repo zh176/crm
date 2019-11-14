@@ -48,5 +48,5 @@ public interface ClientMapper extends BaseMapper<Client> {
      * @param no
      * @return
      */
-    Client getClientByNo(String nos);
+    Client getClientByNo(String no);
 }
