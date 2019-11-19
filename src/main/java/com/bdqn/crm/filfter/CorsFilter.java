@@ -25,10 +25,10 @@ public class CorsFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+//        System.out.println("filter: " + ((HttpServletRequest)servletRequest).getRequestURI());
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        String token = request.getHeader("Authorization");
         response.setContentType("textml;charset=UTF-8");
         String origin = request.getHeader("Origin");
         System.out.println("来源：" + origin);

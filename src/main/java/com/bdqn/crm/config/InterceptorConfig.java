@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @description: TODO
  * @date 2019/10/1813:53
  */
-//@SpringBootConfiguration
+@SpringBootConfiguration
 public class InterceptorConfig implements WebMvcConfigurer {
 
     @Autowired
@@ -24,7 +24,10 @@ public class InterceptorConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authInterceptor)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/webjars/**","/swagger-resources/**","/swagger-resources/**","/v2/**","/swagger-ui.html");
+                .excludePathPatterns("/webjars/**","/swagger-resources/**",
+                        "/swagger-resources/**","/v2/**","/swagger-ui.html",
+                        "/user/login","/role/**","/right/**","/roleRight/**","/dic/**",
+                        "/user/role/**");
     }
 
     @Override

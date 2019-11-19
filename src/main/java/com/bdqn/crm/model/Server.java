@@ -15,12 +15,13 @@ public class Server {
     private String type;
     private String title;
     private String custNo;
+    private String custName;
     private String status;
     private String request;
-    private Integer createId;
+    private Long createId;
     private String createName;
     private Date createDate;
-    private Integer dueId;
+    private Long dueId;
     private String dueName;
     private Date dueDate;
     private String deal;

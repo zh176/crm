@@ -146,4 +146,8 @@
     <select id="getClientByNo" resultMap="ClientResultMap">
           SELECT * FROM cst_customer WHERE cust_no = #{no} and cust_status={status}
     </select>
+    <select id="getClientIdByName" resultType="java.lang.Long">
+        SELECT cust_no FROM cst_customer
+        WHERE cust_name = #{ClientName}
+    </select>
 </mapper>

@@ -19,6 +19,11 @@ import java.util.List;
  */
 @Repository
 public interface RightMapper extends BaseMapper<Right> {
+    /**
+     * 根据权限ID获取所有right
+     * @param roleId
+     * @return
+     */
     List<Right> getRightByRole(Long roleId);
 
     /**

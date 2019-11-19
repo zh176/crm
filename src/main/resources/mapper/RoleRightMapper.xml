@@ -34,5 +34,15 @@
         SELECT * FROM sys_role_right WHERE
         rf_role_id = #{roleId} AND rf_right_code = #{rightCode};
     </select>
+    <select id="getRoleRightByRoleId" resultMap="RoleRightResultMap">
+         SELECT * FROM sys_role_right
+         WHERE
+            rf_role_id = #{roleId}
+    </select>
+    <select id="getUrlByRoleId" resultMap="RoleRightResultMap">
+        SELECT T1.rf_opeart,T2.right_url rf_right_code  FROM sys_role_right T1 LEFT JOIN sys_right T2
+        ON T1.rf_right_code = T2.right_code
+        WHERE T2.right_url != '/' AND rf_role_id = #{roleId}
+    </select>
 
 </mapper>

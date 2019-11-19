@@ -56,4 +56,18 @@ public interface UserMapper extends BaseMapper<User> {
      * @return
      */
     boolean delUserById(Long id);
+
+    /**
+     * 根据权限id获取用户
+     * @param roleId
+     * @return
+     */
+    List<User> getUserByRole(Integer roleId);
+
+    /**
+     * 根据用户名获取用户
+     * @param userName
+     * @return
+     */
+    User getUserByName(String userName);
 }

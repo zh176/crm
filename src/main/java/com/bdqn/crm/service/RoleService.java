@@ -15,6 +15,7 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,6 +57,7 @@ public class RoleService {
 
     public Integer addRole(Role role){
         if (role!=null){
+            role.setCreatTime(new Date());
             roleMapper.addRole(role);
             return role.getId();
         }

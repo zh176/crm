@@ -56,4 +56,20 @@ public class RoleRightService {
         }
         throw new MyRuntimeException(ResultView.error("参数异常"));
     }
+
+    public List<RoleRight> getRoleRightByRoleId(Integer roleId){
+        if(roleId!=null){
+            List<RoleRight> roleRights = roleRightMapper.getRoleRightByRoleId(roleId);
+            return roleRights;
+        }
+        throw new MyRuntimeException(ResultView.error("参数异常"));
+    }
+
+    public List<RoleRight> getUrlByRoleId(Integer roleId){
+        if (roleId != null){
+            List<RoleRight> rights = roleRightMapper.getUrlByRoleId(roleId);
+            return rights;
+        }
+        throw new MyRuntimeException(ResultView.error("参数异常"));
+    }
 }

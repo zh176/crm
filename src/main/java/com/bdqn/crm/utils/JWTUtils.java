@@ -23,7 +23,7 @@ public class JWTUtils {
     //    jwt密钥
     private static final String TOKEN_SECRET = "zhou123456";
     //    jwt过期时间
-    private static final long EXPIRE_TIM = 6000 * 15;
+    private static final long EXPIRE_TIM = 10000 * 60 * 15;
 
     //    创建token方法
     public static String creatToken(PayloadBo payloadBo) {
@@ -57,21 +57,15 @@ public class JWTUtils {
         }
     }
 //    验证token是否有效
-    public static String verify(String token){
-        try {
-            Algorithm algorithm =
-                    Algorithm.HMAC256(TOKEN_SECRET);
-            JWTVerifier verifier = JWT.require(algorithm)
-                    .build();
-            //验证token 诺验证不通过则抛出TokenExpiredException
-            DecodedJWT jwt = verifier.verify(token);
-            String payload = jwt.getPayload();
-            return payload;
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("token验证不通过");
-            return null;
-        }
+    public static String verify(String token) throws Exception {
+        Algorithm algorithm =
+                Algorithm.HMAC256(TOKEN_SECRET);
+        JWTVerifier verifier = JWT.require(algorithm)
+                .build();
+        //验证token 诺验证不通过则抛出TokenExpiredException
+        DecodedJWT jwt = verifier.verify(token);
+        String payload = jwt.getPayload();
+        return payload;
 
     }
     /**
@@ -84,7 +78,7 @@ public class JWTUtils {
         return new String(new Base64().decode(payLoad),"utf-8");
 
     }
-    public PayloadBo getPlayLoad(String token) throws UnsupportedEncodingException {
+    public static PayloadBo getPlayLoad(String token) throws Exception {
         if (token != null) {
             String verify = verify(token);
             if (verify!=null){
@@ -97,5 +91,4 @@ public class JWTUtils {
         }
         return null;
     }
-
 }

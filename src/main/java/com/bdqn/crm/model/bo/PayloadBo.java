@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PayloadBo {
-    private Long userId;
+    private String userId;
     private String userName;
     private Integer roleId;
     private String roleName;

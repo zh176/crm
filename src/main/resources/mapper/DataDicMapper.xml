@@ -4,14 +4,18 @@
 
     <resultMap id="DataDicResultMap" type="com.bdqn.crm.model.DataDic">
         <result column="dic_id" property="id"/>
-        <result column="dic_type_code" property="typeName"/>
+        <result column="dic_type_code" property="typeCode"/>
         <result column="dic_type_name" property="typeName"/>
         <result column="dic_value_id" property="valueId"/>
         <result column="dic_value_name" property="valueName"/>
         <result column="dic_creat_time" property="creatTime"/>
         <result column="dic_state" property="state"/>
     </resultMap>
-<!--    <select id="getAllDataDic" resultMap="DataDicResultMap">-->
+    <insert id="addDataDic">
+        INSERT INTO bas_dic(dic_type_code,dic_type_name,dic_value_id,dic_value_name,dic_creat_time，dic_state)
+        VALUES (typeCode,typeName,valueI,valueName,creatTime,'1')
+    </insert>
+    <!--    <select id="getAllDataDic" resultMap="DataDicResultMap">-->
 <!--        SELECT id,type_code,type_name,value_id,value_name,flag,creat_time FROM bas_dic-->
 <!--        WHERE state = 1-->
 
@@ -19,5 +23,9 @@
     <select id="getDataDicByType" resultMap="DataDicResultMap">
         SELECT dic_id,dic_value_id,dic_value_name FROM bas_dic
          WHERE dic_type_code = #{typeCode}
+    </select>
+    <select id="getDicName" resultType="java.lang.String">
+        SELECT dic_value_name FROM bas_dic
+        WHERE dic_value_id = #{valueId}
     </select>
 </mapper>

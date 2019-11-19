@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.AuthTokenMapper">
+    <resultMap id="AuthTokenResultMap" type="com.bdqn.crm.model.AuthToken">
+        <id property="id" column="id"/>
+        <result property="token" column="token"/>
+        <result property="userId" column="user_id"/>
+    </resultMap>
+    <insert id="addAuthToken">
+        INSERT INTO oauth_token(user_id,token)
+        values (#{userId},#{token})
+    </insert>
+    <update id="updAuthToken">
+        UPDATE oauth_token SET token = #{token}
+        WHERE user_id = #{userId}
+    </update>
+    <select id="getTokenByUserId" resultType="java.lang.String">
+        SELECT token FROM oauth_token
+        WHERE user_id = #{userId}
+    </select>
+
+
+</mapper>

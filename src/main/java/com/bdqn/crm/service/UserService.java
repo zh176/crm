@@ -36,6 +36,9 @@ public class UserService {
     @Autowired
     RoleMapper roleMapper;
 
+    @Autowired
+    AuthTokenService authTokenService;
+
     public String getUser(String userName,String pwd){
         User user = userMapper.getUser(userName, pwd);
         if (user == null) {
@@ -45,9 +48,18 @@ public class UserService {
             throw new MyRuntimeException(ResultView.error(ResultEnum.CODE_7));
         }
         String roleName = roleMapper.getRoleNameById(user.getRoleId());
-        PayloadBo payloadBo = new PayloadBo(user.getId(), userName, user.getRoleId(),roleName, user.getHeader());
+        PayloadBo payloadBo = new PayloadBo(user.getId().toString(), userName, user.getRoleId(),roleName, user.getHeader());
         String token = JWTUtils.creatToken(payloadBo);
+        authTokenService.addDataDic(user.getId().toString(), token);
         return token;
+    }
+
+    public User getUserByName(String userName){
+        if (userName!=null){
+            User user = userMapper.getUserByName(userName);
+            return user;
+        }
+        throw new MyRuntimeException(ResultView.error("参数异常"));
     }
 
     public boolean addUser(User user){
@@ -122,5 +134,13 @@ public class UserService {
             return false;
         }
 
+    }
+
+    public List<User> getUserByRole(Integer roleId){
+        if (roleId!=null){
+            List<User> users = userMapper.getUserByRole(roleId);
+            return users;
+        }
+        throw new MyRuntimeException(ResultView.error("参数异常"));
     }
 }

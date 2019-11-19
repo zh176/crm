@@ -5,10 +5,7 @@ import com.bdqn.crm.service.DataDicService;
 import com.bdqn.crm.utils.result.ResultView;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,4 +30,15 @@ public class DataDicController {
         return ResultView.success(dics);
     }
 
+    @GetMapping("/value/{valueId}")
+    public ResultView getValueNameById(@PathVariable String valueId){
+        String valueName = dataDicService.getValueNameById(valueId);
+        return ResultView.success(valueName);
+    }
+
+    @PostMapping("/add")
+    public ResultView addDataDic(DataDic dataDic){
+        boolean b = dataDicService.addDataDic(dataDic);
+        return ResultView.success(b);
+    }
 }

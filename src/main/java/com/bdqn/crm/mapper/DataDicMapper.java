@@ -30,4 +30,18 @@ public interface DataDicMapper{
      * @return
      */
     List<DataDic> getDataDicByType(String typeCode);
+
+    /**
+     * 根据valueId 获取valueName
+     * @param valueId
+     * @return
+     */
+    String getDicName(String valueId);
+
+    /**
+     * 添加数据字典
+     * @param dataDic
+     * @return
+     */
+    boolean addDataDic(DataDic dataDic);
 }

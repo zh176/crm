@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.util.List;
 
 /**
  * @author 忍
@@ -33,8 +34,8 @@ public class UserController {
 
     @ApiOperation(value = "用户登录",notes = "根据用户名-密码登录")
     @PostMapping("/login")
-    public ResultView getUser(String userName, String pwd){
-        String token = userService.getUser(userName, pwd);
+    public ResultView getUser(String username, String password){
+        String token = userService.getUser(username, password);
         return ResultView.success(token);
     }
 
@@ -74,9 +75,15 @@ public class UserController {
     }
 
     @ApiOperation("根据id删除元素")
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/del/{id}")
     public ResultView delUser(@PathVariable Long id){
         boolean result = userService.delUserById(id);
         return ResultView.success(result);
+    }
+    @ApiOperation("根据权限id获取用户")
+    @GetMapping("/role/{roleId}")
+    public ResultView getUserByRole(@PathVariable Integer roleId){
+        List<User> users = userService.getUserByRole(roleId);
+        return ResultView.success(users);
     }
 }

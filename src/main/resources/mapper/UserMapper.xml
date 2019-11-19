@@ -48,5 +48,13 @@
         SELECT * FROM sys_user
         WHERE user_id = #{id}
     </select>
+    <select id="getUserByRole" resultMap="UserResultMap">
+        SELECT user_id,user_name FROM sys_user
+        WHERE user_role_id = #{roleId}
+    </select>
+    <select id="getUserByName" resultMap="UserResultMap">
+        SELECT user_id,user_name,user_role_id,user_password FROM sys_user
+        WHERE user_flag = '1' AND user_name = #{userName}
+    </select>
 
 </mapper>

@@ -50,4 +50,19 @@ public interface RoleRightMapper extends BaseMapper<RoleRight> {
      * @return
      */
     boolean updRoleRight(Role role);
+
+    /**
+     * 根据权限ID获取映射
+     * @param roleId
+     * @return
+     */
+    List<RoleRight> getRoleRightByRoleId(Integer roleId);
+
+    /**
+     * g根据权限id查询所有的url及操作
+     * @param roleId
+     * @return
+     */
+    List<RoleRight> getUrlByRoleId(Integer roleId);
+
 }
