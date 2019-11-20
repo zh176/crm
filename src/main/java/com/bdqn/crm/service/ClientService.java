@@ -73,7 +73,15 @@ public class ClientService {
         return pageResult;
     }
 
-    public Client getClientByNo(String no){
+    public Client getClientByNo(String no) {
         return clientMapper.getClientByNo(no);
+    }
+
+    public Long getIdByCustName(String clientName){
+        if (clientName!=null){
+            Long clientId = clientMapper.getClientIdByName(clientName);
+            return clientId;
+        }
+        throw new MyRuntimeException(ResultView.error("参数异常"));
     }
 }

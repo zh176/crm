@@ -74,16 +74,17 @@ public class AuthInterceptor implements HandlerInterceptor {
         String method = methodTypeToString(methodType);
         //拆解uri
         String url = "/"+uri.split("/")[1];
+        System.out.println("URI-----:"+uri);
         if (url.equals("/server")){
             return true;
         }
         for (RoleRight roleRight: roleRights) {
             System.out.println(roleRight.getOperate()+":"+roleRight.getRightCode());
-            if (url.equals(roleRight.getRightCode()) && roleRight.getOperate().indexOf(method)>=0){
+            if (url.equals(roleRight.getRightCode()) && roleRight.getOperate().contains(method)){
                 return true;
             }
         }
-        throw new MyRuntimeException(ResultView.error(ResultEnum.CODE_12));
+            throw new MyRuntimeException(ResultView.error(ResultEnum.CODE_12));
     }
 
     public String methodTypeToString(String MethodType){
@@ -91,7 +92,7 @@ public class AuthInterceptor implements HandlerInterceptor {
             return "add";
         }
         if (MethodType.equals("PUT")){
-            return "put";
+            return "upd";
         }
         if (MethodType.equals("DELETE")){
             return "del";
@@ -104,6 +105,6 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     public static void main(String[] args) {
         String test = "add,view,del,upd";
-        System.out.println(test.indexOf("lok"));
+        System.out.println(test.indexOf("upd"));
     }
 }

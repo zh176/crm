@@ -143,4 +143,12 @@ public class UserService {
         }
         throw new MyRuntimeException(ResultView.error("参数异常"));
     }
+
+    public String getNameById(String  id){
+        if (id!=null){
+            String userName = userMapper.getNameById(id);
+            return userName;
+        }
+        throw new MyRuntimeException(ResultView.error("参数异常"));
+    }
 }

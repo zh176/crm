@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.PastOrPresent;
 import java.util.List;
 
 @Api("客户流失信息")
@@ -31,5 +32,23 @@ public class CustomerController {
     public ResultView updateClient(@RequestBody Customer customer){
         boolean result = customerService.updCustomer(customer);
         return ResultView.success(result);
+    }
+
+    @PostMapping("/add")
+    public ResultView addCustomer(Customer customer){
+        boolean b = customerService.addCustomer(customer);
+        return ResultView.success(b);
+    }
+
+    @GetMapping("/{id}")
+    public ResultView getCustomer(@PathVariable String id){
+        Customer lost = customerService.getLost(id);
+        return ResultView.success(lost);
+    }
+
+    @PostMapping("/affirm")
+    public ResultView affirmLost(Customer customer){
+        boolean b = customerService.affirmLost(customer);
+        return ResultView.success(b);
     }
 }

@@ -49,4 +49,10 @@ public interface ClientMapper extends BaseMapper<Client> {
      * @return
      */
     Client getClientByNo(String no);
+    /**
+     * 根据客户姓名查找客户id
+     * @param ClientName
+     * @return
+     */
+    Long getClientIdByName(String ClientName);
 }

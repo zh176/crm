@@ -56,5 +56,9 @@
         SELECT user_id,user_name,user_role_id,user_password FROM sys_user
         WHERE user_flag = '1' AND user_name = #{userName}
     </select>
+    <select id="getNameById" resultType="java.lang.String">
+        SELECT user_name FROM sys_user
+        WHERE user_flag = '1' AND user_id = #{id}
+    </select>
 
 </mapper>

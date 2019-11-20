@@ -35,21 +35,12 @@ public class MarketService {
      * @return
      */
     public PageResult getAllMarket(PagePrarm pagePrarm){
-        Integer pageIndex = pagePrarm.getPageIndex();
+        int pageIndex = pagePrarm.getPageIndex();
         Integer pageSize = pagePrarm.getPageSize();
 
-        JSONObject object = JSONObject.parseObject(pagePrarm.getCondition());
+        Market market = JSONObject.parseObject(pagePrarm.getCondition(), Market.class);
         PageHelper.startPage(pageIndex,pageSize);
-        String  custName = null;
-        String title = null;
-        String linkman = null;
-        if(object != null ){
-            custName = object.getString("custName").trim();
-            title = object.getString("title").trim();
-            linkman = object.getString("linkman").trim();
-        }
-
-        List<Market> markets = marketMapper.getAllMarket(custName,title,linkman);
+        List<Market> markets = marketMapper.getAllMarket(market);
         PageInfo<Market> pageInfo = new PageInfo<>(markets);
         PageResult pageResult = new PageResult(pageIndex , pageSize , Integer.parseInt(pageInfo.getTotal()+""),pageInfo.getList());
         return pageResult;
@@ -59,8 +50,10 @@ public class MarketService {
      * 添加
      * @param market
      */
-    public void  addMarket(Market market){
-        marketMapper.addMarket(market);
+    public boolean  addMarket(Market market){
+        market.setCreateDate(new Date());
+        boolean b = marketMapper.addMarket(market);
+        return b;
     }
 
     /**
@@ -86,5 +79,14 @@ public class MarketService {
     public boolean deletMarket(Integer id){
         marketMapper.deletMarket(id);
         return true;
+    }
+
+    public boolean allotChance(Market market){
+        if (market!=null){
+            market.setDueDate(new Date());
+            boolean b = marketMapper.allotChance(market);
+            return b;
+        }
+        throw new MyRuntimeException(ResultView.error("参数异常"));
     }
 }

@@ -80,10 +80,17 @@ public class UserController {
         boolean result = userService.delUserById(id);
         return ResultView.success(result);
     }
+
     @ApiOperation("根据权限id获取用户")
     @GetMapping("/role/{roleId}")
     public ResultView getUserByRole(@PathVariable Integer roleId){
         List<User> users = userService.getUserByRole(roleId);
         return ResultView.success(users);
+    }
+
+    @GetMapping("/name/{id}")
+    public ResultView getNameById(@PathVariable String id){
+        String userName = userService.getNameById(id);
+        return ResultView.success(userName);
     }
 }

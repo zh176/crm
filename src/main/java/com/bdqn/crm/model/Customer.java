@@ -14,12 +14,13 @@ import java.util.Date;
 public class Customer {
     private Integer id;
     private String custNo;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private String custManagerId;
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date lastOrderDate;
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date lostDate;
     private String delay;
     private String reason;
     private String status;
+    private String time;
+
 }

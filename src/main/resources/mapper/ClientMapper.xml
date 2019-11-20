@@ -139,12 +139,12 @@
             <if test="managerName != null and managerName !=''">
                 and cust_manager_name = #{managerName}
             </if>
-            <if test="level != 0 and level >=2 ">
+            <if test="level != 0 and level &lt;=2 ">
                 and cust_level = #{level}
             </if>
     </select>
     <select id="getClientByNo" resultMap="ClientResultMap">
-          SELECT * FROM cst_customer WHERE cust_no = #{no} and cust_status={status}
+          SELECT * FROM cst_customer WHERE cust_no = #{no} and cust_status='1'
     </select>
     <select id="getClientIdByName" resultType="java.lang.Long">
         SELECT cust_no FROM cst_customer

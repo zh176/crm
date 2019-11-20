@@ -45,8 +45,9 @@ public class MarketController {
     @ApiOperation(value = "添加信息")
     @PostMapping("/add")
     public ResultView addMarket(Market market){
-        marketService.addMarket(market);
-        return ResultView.success();
+        boolean b = marketService.addMarket(market);
+
+        return ResultView.success(b);
     }
 
     @ApiOperation(value = "修改信息")
@@ -54,5 +55,11 @@ public class MarketController {
     public ResultView updateMarket(@RequestBody Market market){
        boolean flag =  marketService.updateMarket(market);
         return ResultView.success(flag);
+    }
+
+    @PostMapping("/allot")
+    public ResultView allotChance(Market market){
+        boolean b = marketService.allotChance(market);
+        return ResultView.success(b);
     }
 }

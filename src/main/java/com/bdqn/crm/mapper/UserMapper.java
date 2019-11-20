@@ -70,4 +70,11 @@ public interface UserMapper extends BaseMapper<User> {
      * @return
      */
     User getUserByName(String userName);
+
+    /**
+     * 根据用户id获取哦用户名
+     * @param id
+     * @return
+     */
+    String getNameById(String id);
 }

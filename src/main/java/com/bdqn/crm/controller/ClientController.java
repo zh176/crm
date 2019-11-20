@@ -57,7 +57,7 @@ public class ClientController {
 
     @ApiOperation(value = "根据Id查询客户信息")
     @GetMapping("/get/{no}")
-    public ResultView updateById(@PathVariable String no){
+    public ResultView getClientById(@PathVariable String no){
         Client result=clientService.getClientByNo(no);
         return  ResultView.success(result);
     }

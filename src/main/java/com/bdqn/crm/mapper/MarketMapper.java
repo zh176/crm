@@ -22,7 +22,7 @@ public interface MarketMapper {
      * 查询
      * @return
      */
-    List<Market> getAllMarket(String custName,String title,String linkman);
+    List<Market> getAllMarket(Market market);
 
     /**
      * 添加
@@ -42,5 +42,10 @@ public interface MarketMapper {
      */
     boolean updateMarket(Market market);
 
-
+    /**
+     * 分配销售机会
+     * @param market
+     * @return
+     */
+    boolean allotChance(Market market);
 }

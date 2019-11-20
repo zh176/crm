@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.PlaneMapper">
+    <resultMap id="planeMapper" type="com.bdqn.crm.model.Plane">
+        <id column="pla_id" property="id"/>
+        <result column="pla_chc_id" property="markId"/>
+        <result column="pla_date" property="createTime"/>
+        <result column="pla_todo" property="todo"/>
+        <result column="pla_result" property="result"/>
+    </resultMap>
+    <insert id="addPlane">
+        INSERT INTO sla_plan(pla_chc_id,pla_date,pla_todo,pla_result,status)
+        VALUES (#{markId},#{createTime},#{todo},#{result},1)
+        <selectKey keyColumn="pla_id" keyProperty="id" resultType="Integer" order="AFTER">
+            SELECT LAST_INSERT_ID ()
+        </selectKey>
+    </insert>
+    <update id="updPlane">
+        UPDATE sla_plan
+        <set>
+            <if test="todo!=null and todo != ''">
+                pla_todo = #{todo}
+            </if>
+            <if test="result!=null and result != ''">
+                pla_result = #{result}
+            </if>
+        </set>
+        WHERE pla_id = #{id}
+    </update>
+    <delete id="delPlane">
+        UPDATE sla_plan SET status = '0'
+        WHERE pla_id = #{id}
+    </delete>
+    <select id="getPlanByMarkId" resultMap="planeMapper">
+        SELECT pla_id,pla_chc_id,pla_date,pla_todo,pla_result
+         FROM sla_plan
+        WHERE pla_chc_id = #{markId} AND status = '1'
+    </select>
+</mapper>

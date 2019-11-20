@@ -20,7 +20,7 @@ public class Market {
     private String linkman;
     private String tel;
     private String desc;
-    private Integer createId;
+    private String createId;
     private String createName;
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date createDate;
