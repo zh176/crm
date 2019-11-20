@@ -28,7 +28,7 @@ public interface MarketMapper {
      * 添加
      * @param market
      */
-    void addMarket(Market market);
+    boolean addMarket(Market market);
 
     /**
      * 删除
