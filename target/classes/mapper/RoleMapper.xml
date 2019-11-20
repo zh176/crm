@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.RoleMapper">
+    <resultMap id="RoleResultMap" type="com.bdqn.crm.model.Role">
+        <result column="role_id" property="id"/>
+        <result column="role_name" property="name"/>
+        <result column="role_desc" property="description"/>
+        <result column="role_flag" property="flag"/>
+        <result column="role_creat_time" property="creatTime"/>
+    </resultMap>
+    <insert id="addRole">
+        INSERT INTO sys_role(role_name,role_desc,role_flag)
+        VALUES(#{name},#{description},1)
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <update id="updateRole" parameterType="com.bdqn.crm.model.Role">
+        UPDATE sys_role SET role_name = #{name},role_desc=#{description} WHERE role_id = #{id}
+    </update>
+    <update id="delRole">
+        UPDATE sys_role SET role_flag = 0 WHERE role_id = #{roleId}
+    </update>
+    <select id="getRoleNameById" resultType="java.lang.String">
+        SELECT role_desc FROM sys_role WHERE role_id = #{id}
+    </select>
+    <select id="getAllRole" resultMap="RoleResultMap">
+        SELECT role_id,role_name,role_desc,role_flag,role_creat_time FROM  sys_role
+        WHERE role_flag = 1
+        <if test="name!=null and name!='' ">
+            AND role_desc = #{name}
+        </if>
+    </select>
+    <select id="getRoleById" resultMap="RoleResultMap">
+         SELECT role_id,role_name,role_desc,role_flag,role_creat_time
+         FROM  sys_role
+         WHERE role_id = #{roleId}
+    </select>
+</mapper>

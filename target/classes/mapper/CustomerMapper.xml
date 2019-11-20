@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.CustomerMapper">
+    <resultMap id="CustomerResultMap" type="com.bdqn.crm.model.Customer">
+        <result column="lst_id" property="id"/>
+        <result column="lst_cust_no" property="custNo"/>
+        <result column="lst_cust_manager_id" property="custManagerId"/>
+        <result column="lst_last_order_date" property="lastOrderDate"/>
+        <result column="lst_lost_date" property="lostDate"/>
+        <result column="lst_delay" property="delay"/>
+        <result column="lst_reason" property="reason"/>
+        <result column="lst_status" property="status"/>
+    </resultMap>
+    <insert id="addCustomer">
+        INSERT INTO cst_lost(lst_cust_no,lst_cust_manager_id,lst_last_order_date,lst_lost_date,lst_delay,lst_reason,lst_status)
+        VALUES(#{custNo},#{custManagerId},#{lastOrderDate},#{lostDate},#{delay},#{reason},'lost_defer')
+    </insert>
+    <update id="updCustomer" parameterType="com.bdqn.crm.model.Customer">
+        update cst_lost
+        <set>
+            <if test="id != null and id != ''">
+                lst_id = #{id},
+            </if>
+            <if test="custManagerId != null and custManagerId != ''">
+                lst_cust_manager_id = #{custManagerId},
+            </if>
+            <if test="lastOrderDate != null">
+                lst_last_order_date = #{lastOrderDate},
+            </if>
+            <if test="lostDate != null">
+                lst_lost_date = #{lostDate},
+            </if>
+            <if test="delay != null and delay != ''">
+                lst_delay = #{delay},
+            </if>
+            <if test="reason != null and reason != ''">
+                lst_reason = #{reason},
+            </if>
+            <if test="status != null and status != ''">
+                lst_status = #{status}
+            </if>
+        </set>
+            where lst_cust_no = #{custNo}
+    </update>
+    <update id="updOrder">
+        UPDATE cst_order SET odr_lost_stauts = '2' WHERE odr_cust_no = #{custId}
+    </update>
+    <update id="affirmLost">
+        UPDATE cst_lost SET lst_lost_date = #{lostDate},lst_reason = #{reason},lst_status = 'lost_affirm'
+        WHERE lst_id = #{id}
+    </update>
+    <select id="getLostEarly" resultMap="CustomerResultMap">
+        SELECT T1.odr_id lst_delay,T2.cust_manager_id lst_reason, T2.cust_name lst_cust_no,T2.cust_manager_name lst_cust_manager_id,T1.odr_date lst_last_order_date
+        FROM cst_order T1
+        LEFT JOIN cst_customer T2 ON T1.odr_cust_no = T2.cust_no
+        WHERE UNIX_TIMESTAMP(T1.odr_date) &lt;=UNIX_TIMESTAMP(date_sub(NOW(), interval 1 MONTH)) AND T2.cust_status = '1' AND T1.odr_lost_stauts = '1'
+        <if test="name !=null and name !=''">
+            and cust_name=#{name}
+        </if>
+        <if test="managerName !=null and managerName !=''">
+            and cust_name=#{managerName}
+        </if>
+    </select>
+    <select id="getLost" resultMap="CustomerResultMap">
+      SELECT T1.lst_status, T1.lst_id,T2.cust_name lst_cust_no,T2.cust_manager_name lst_cust_manager_id,T1.lst_last_order_date, T1.lst_lost_date
+      FROM cst_lost T1 LEFT JOIN cst_customer T2 ON T1.lst_cust_no = T2.cust_no
+      <where>
+          <if test="name !=null and name !=''">
+              and cust_name=#{name}
+          </if>
+          <if test="managerName !=null and managerName !=''">
+              and cust_name=#{managerName}
+          </if>
+          <if test="status !=null and status !=''">
+              and lst_status=#{status}
+          </if>
+      </where>
+    </select>
+    <select id="getCustomerById" resultMap="CustomerResultMap">
+         SELECT T1.lst_reason,T1.lst_delay,T1.lst_id,T1.lst_cust_no,T1.lst_cust_manager_id,T1.lst_last_order_date, T1.lst_lost_date
+      FROM cst_lost T1 LEFT JOIN cst_customer T2 ON T1.lst_cust_no = T2.cust_no
+      WHERE T1.lst_id = #{id}
+    </select>
+</mapper>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.ServerMapper">
+
+    <resultMap id="ServerResultMap" type="com.bdqn.crm.model.Server">
+        <result column="svr_id" property="id"/>
+        <result column="svr_type" property="type"/>
+        <result column="svr_title" property="title"/>
+        <result column="svr_cust_no" property="custNo"/>
+        <result column="svr_status" property="status"/>
+        <result column="svr_request" property="request"/>
+        <result column="svr_create_id" property="createId"/>
+        <result column="svr_create_name" property="createName"/>
+        <result column="svr_create_date" property="createDate"/>
+        <result column="svr_due_id" property="dueId"/>
+        <result column="svr_due_name" property="dueName"/>
+        <result column="svr_due_date" property="dueDate"/>
+        <result column="svr_deal" property="deal"/>
+        <result column="svr_deal_id" property="dealId"/>
+        <result column="svr_deal_name" property="dealName"/>
+        <result column="svr_result_date" property="resultDate"/>
+        <result column="svr_result" property="result"/>
+        <result column="svr_satisfy" property="satisfy"/>
+        <result column="cust_name" property="custName"/>
+
+    </resultMap>
+    <insert id="creatServer" parameterType="com.bdqn.crm.model.DataDic">
+        INSERT INTO
+        cst_service(svr_type,svr_title,svr_cust_no,svr_status,svr_request,svr_create_id,svr_create_name,svr_create_date,svr_due_id,svr_due_name,svr_due_date,svr_deal,svr_deal_id,svr_deal_name,svr_result_date,svr_result,svr_satisfy)
+        VALUES (#{type},#{title},#{custNo},#{status},#{request},#{createId},#{createName},#{createDate},#{dueId},#{dueName},#{dueDate},#{deal},#{dealId},#{dealName},#{resultDate},#{result},#{satisfy})
+    </insert>
+
+    <update id="allotServer">
+        UPDATE cst_service
+        SET svr_due_id = #{dueId},svr_due_name=#{dueName},svr_due_date = #{dueDate},
+            svr_status = 'server_allot'
+        WHERE svr_id = #{id}
+    </update>
+    <update id="delServer">
+        UPDATE cst_service
+        SET svr_status = 'server_del'
+        WHERE svr_id = #{serverId}
+    </update>
+    <update id="disposeServer">
+        UPDATE cst_service
+        SET svr_deal = #{deal},svr_status = 'server_dispose'
+        WHERE svr_id = #{id}
+    </update>
+    <update id="feedbackServer">
+        UPDATE cst_service
+        SET svr_result = #{result},svr_result_date = #{dueDate},svr_satisfy = #{satisfy},svr_status = 'server_archive'
+        WHERE svr_id = #{id}
+    </update>
+
+    <select id="getAllServer" resultMap="ServerResultMap" parameterType="com.bdqn.crm.model.bo.ServerSearCondBo">
+        SELECT svr_id,svr_title,svr_create_name,svr_create_date,T2.cust_name
+                ,T3.dic_value_name svr_type
+        FROM
+        bas_dic T3,cst_service T1 LEFT JOIN cst_customer T2 ON svr_cust_no = cust_no
+        where T1.svr_type = T3.dic_value_id AND T3.dic_state = '1'
+        <if test="status!=null and status!=''">
+            AND T3.dic_value_id = #{status}
+        </if>
+        <if test="custNo!=null and custNo!=0">
+            AND svr_cust_no = #{custNo}
+        </if>
+        <if test="title!=null and title!=''">
+            AND svr_title = #{title}
+        </if>
+        <if test="type!=null and type!=''">
+            AND svr_type = #{type}
+        </if>
+        <if test="startTime!= null ">
+            AND UNIX_TIMESTAMP(svr_create_date) &gt;=UNIX_TIMESTAMP(#{startTime})
+        </if>
+        <if test="endTime !=null" >
+            AND UNIX_TIMESTAMP(svr_create_date) &lt;= UNIX_TIMESTAMP(#{endTime})
+        </if>
+        <if test="state!=null and state!=''">
+            AND svr_status = #{state}
+        </if>
+        <if test="userId!=null and userId !=''">
+            AND svr_due_id = #{userId}
+        </if>
+    </select>
+    <select id="getServerById" resultMap="ServerResultMap">
+        SELECT svr_id,svr_title,svr_create_name,svr_create_date,T2.cust_name,
+                svr_request,svr_due_name,svr_due_date,svr_deal,svr_deal_name,svr_result_date,svr_result,svr_satisfy
+                ,T3.dic_value_name svr_type,svr_status
+        FROM
+            bas_dic T3,cst_service T1 LEFT JOIN cst_customer T2 ON svr_cust_no = cust_no
+        where T1.svr_type = T3.dic_value_id
+              AND  svr_id = #{serverId}
+    </select>
+</mapper>

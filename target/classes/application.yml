@@ -1,0 +1,41 @@
+spring: #表示该配置直接为Spring容器负责处理
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSourceC3P0Adapter #配置当前要使用的数据源类型
+    driver-class-name: com.mysql.cj.jdbc.Driver #配置mysql驱动类
+    username: java
+    password: 'Java147258@'
+    url: jdbc:mysql://120.79.42.112:3306/crm?characterEncoding=utf-8&useSSL=false&serverTimezone=CTT
+    dbcp2:
+      　　min-idle: 5         #数据库连接池的最小维持连接数
+      　　initial-size: 5     #初始化提供的连接数
+      　　max-total: 5          #最大的连接数
+      　　max-wait-millis: 200        #等待连接获取的最大超时时间
+  thymeleaf:
+    cache: false #关闭模板缓存
+  mvc:
+    view:
+      prefix: classpath:/templates/ # 配置视图映射路径
+      suffix: .html # 视图后缀名
+  resources:
+    static-locations: classpath:/static/
+  redis:
+    database: 0 #redis数据库索引（默认为0）
+    timeout: 5000ms # 连接超时时间
+    host: 192.168.195.102
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8 # 连接池中的最大连接
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+
+mybatis:
+  mapper-locations: classpath:/mapper/*Mapper.xml #Mapper文件位置
+  type-aliases-package: com.bdqn.crm.model
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

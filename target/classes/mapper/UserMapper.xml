@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdqn.crm.mapper.UserMapper">
+
+   <resultMap id="UserResultMap" type="com.bdqn.crm.model.User">
+      <result column="user_id" property="id"/>
+      <result column="user_name" property="name"/>
+      <result column="user_password" property="password"/>
+      <result column="user_role_id" property="roleId"/>
+      <result column="user_flag" property="flag"/>
+       <result column="user_creat_time" property="creatTime"/>
+       <result  column="user_phone" property="phone"/>
+   </resultMap>
+    <insert id="addUser" parameterType="com.bdqn.crm.model.User">
+        INSERT INTO sys_user(user_id,user_name,user_password,user_role_id,user_phone,user_flag,user_creat_time)
+        VALUES(#{id},#{name},#{password},#{roleId},#{phone},#{flag},#{creatTime})
+    </insert>
+
+    <update id="updateUser" parameterType="com.bdqn.crm.model.User">
+        UPDATE sys_user SET user_phone = #{phone},user_role_id=#{roleId},user_flag = #{flag},user_name=#{name}
+        WHERE user_id = #{id}
+    </update>
+    <update id="delUserById">
+        UPDATE sys_user SET user_flag = 0
+        WHERE user_id = #{id}
+    </update>
+
+    <select id="getUser" resultMap="UserResultMap">
+      SELECT user_id ,user_role_id,user_flag
+      FROM sys_user
+      WHERE user_name = #{userName} AND user_password = #{pwd}
+   </select>
+    <select id="getAllUser" resultMap="UserResultMap">
+        SELECT * FROM sys_user
+        <where>
+            <if test="name != null and name != '' ">
+                and user_name like "%"#{name}"%"
+            </if>
+            <if test="phone != null and phone != '' ">
+                and user_phone = #{phone}
+            </if>
+            <if test="flag == 1 or flag == 0">
+                and user_flag = #{flag}
+            </if>
+        </where>
+    </select>
+    <select id="getUserById" resultMap="UserResultMap">
+        SELECT * FROM sys_user
+        WHERE user_id = #{id}
+    </select>
+    <select id="getUserByRole" resultMap="UserResultMap">
+        SELECT user_id,user_name FROM sys_user
+        WHERE user_role_id = #{roleId}
+    </select>
+    <select id="getUserByName" resultMap="UserResultMap">
+        SELECT user_id,user_name,user_role_id,user_password FROM sys_user
+        WHERE user_flag = '1' AND user_name = #{userName}
+    </select>
+    <select id="getNameById" resultType="java.lang.String">
+        SELECT user_name FROM sys_user
+        WHERE user_flag = '1' AND user_id = #{id}
+    </select>
+
+</mapper>
